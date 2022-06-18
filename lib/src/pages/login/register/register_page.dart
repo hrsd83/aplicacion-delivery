@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'register_controller.dart';
+
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+
+  RegisterController controller = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,29 +34,26 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Widget _buttonBack(){
+  Widget _buttonBack() {
     return Container(
       margin: const EdgeInsets.only(top: 30, left: 20),
       child: SafeArea(
-        child: IconButton(
-          onPressed: () => Get.back(), 
-          icon: const Icon(Icons.arrow_back_rounded),
-          color: Colors.white,
-          iconSize: 35,
-          
-        )
-      ),
+          child: IconButton(
+        onPressed: () => Get.back(),
+        icon: const Icon(Icons.arrow_back_rounded),
+        color: Colors.white,
+        iconSize: 35,
+      )),
     );
-
-
   }
+
   Widget _boxForm(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.65,
       margin: EdgeInsets.only(
           top: MediaQuery.of(context).size.height * 0.3, left: 40, right: 40),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20),
           color: Colors.white,
           boxShadow: const <BoxShadow>[
             BoxShadow(
@@ -79,9 +79,10 @@ class RegisterPage extends StatelessWidget {
   Widget _textFieldEmail() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 34),
-      child: const TextField(
+      child:  TextField(
+          controller: controller.emailController,
           keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               hintText: 'Correo electronico',
               prefixIcon: Icon(Icons.email_rounded))),
     );
@@ -90,37 +91,41 @@ class RegisterPage extends StatelessWidget {
   Widget _textFieldName() {
     return Container(
         margin: const EdgeInsets.symmetric(horizontal: 34),
-        child: const TextField(
+        child: TextField(
+          controller: controller.nameController,
             keyboardType: TextInputType.text,
-            decoration: InputDecoration(
+            decoration:const InputDecoration(
                 hintText: 'Nombre', prefixIcon: Icon(Icons.person))));
   }
 
   Widget _textFieldLastName() {
     return Container(
         margin: const EdgeInsets.symmetric(horizontal: 34),
-        child: const TextField(
+        child:  TextField(
+          controller: controller.lastNameController,
             keyboardType: TextInputType.text,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
                 hintText: 'Apellido', prefixIcon: Icon(Icons.person))));
   }
 
   Widget _textFieldPhone() {
     return Container(
         margin: const EdgeInsets.symmetric(horizontal: 34),
-        child: const TextField(
+        child:  TextField(
+          controller: controller.phoneController,
             keyboardType: TextInputType.phone,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
                 hintText: 'Telefono', prefixIcon: Icon(Icons.phone))));
   }
 
   Widget _textFieldPassword() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 34),
-      child: const TextField(
+      child: TextField(
+        controller: controller.passwordController,
           keyboardType: TextInputType.text,
           obscureText: true,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               hintText: 'Contraseña', prefixIcon: Icon(Icons.lock_rounded))),
     );
   }
@@ -128,10 +133,11 @@ class RegisterPage extends StatelessWidget {
   Widget _textFieldConfirmPassword() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 29),
-      child: const TextField(
+      child: TextField(
+        controller: controller.confirmPasswordController,
           keyboardType: TextInputType.text,
           obscureText: true,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               hintText: 'Confirmar Contraseña',
               prefixIcon: Icon(Icons.lock_rounded))),
     );
@@ -140,15 +146,15 @@ class RegisterPage extends StatelessWidget {
   Widget _imageUser() {
     return SafeArea(
       child: Container(
-        alignment: Alignment.topCenter,
-        margin:const EdgeInsets.only(top:35),
+          alignment: Alignment.topCenter,
+          margin: const EdgeInsets.only(top: 35),
           child: GestureDetector(
-        onTap: () {},
-        child: const CircleAvatar(
-            backgroundImage: AssetImage('assets/img/logoUser.png'),
-            radius: 60,
-            backgroundColor: Colors.white),
-      )),
+            onTap: () {},
+            child: const CircleAvatar(
+                backgroundImage: AssetImage('assets/img/logoUser.png'),
+                radius: 60,
+                backgroundColor: Colors.white),
+          )),
     );
   }
 
@@ -169,7 +175,7 @@ class RegisterPage extends StatelessWidget {
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () => controller.register(),
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 15),
           ),
