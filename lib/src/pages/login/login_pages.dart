@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'login_controller.dart';
 
 class LoginPage extends StatelessWidget {
-
   LoginController controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
@@ -61,10 +60,11 @@ class LoginPage extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height * 0.45,
       margin: EdgeInsets.only(
-          top: MediaQuery.of(context).size.height * 0.35, left: 50, right: 50),
-      decoration: const BoxDecoration(
+          top: MediaQuery.of(context).size.height * 0.35, left: 40, right: 40),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
           color: Colors.white,
-          boxShadow: <BoxShadow>[
+          boxShadow: const <BoxShadow>[
             BoxShadow(
                 color: Colors.black54, blurRadius: 15, offset: Offset(0, 0.75))
           ]),
@@ -135,14 +135,14 @@ class LoginPage extends StatelessWidget {
   Widget _noTengoCuenta() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children:[
+      children: [
         const Text(
           'No tienes cuenta?',
           style: TextStyle(color: Colors.black),
         ),
         const SizedBox(width: 50),
         GestureDetector(
-          onTap: () => controller.goToRegisterPage() ,
+          onTap: () => controller.goToRegisterPage(),
           child: const Text(
             'Registrate aqui',
             style: TextStyle(
