@@ -1,3 +1,4 @@
+import 'package:app_delivery/src/pages/login/register/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app_delivery/src/pages/login/login_pages.dart';
@@ -27,7 +28,9 @@ class _MyAppState extends State<MyApp> {
       title: 'App Delivery',
       initialRoute: '/',
       getPages:[
-        GetPage(name: '/', page: () => LoginPage())
+        GetPage(name: '/', page: () => LoginPage()),
+        GetPage(name: '/register', page: () => RegisterPage())
+
       ],
       theme: ThemeData(
         primaryColor: Colors.deepPurple,

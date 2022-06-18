@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'login_controller.dart';
 
 class LoginPage extends StatelessWidget {
+
+  LoginController controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,16 +135,19 @@ class LoginPage extends StatelessWidget {
   Widget _noTengoCuenta() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Text(
+      children:[
+        const Text(
           'No tienes cuenta?',
           style: TextStyle(color: Colors.black),
         ),
-        SizedBox(width: 50),
-        Text(
-          'Registrate aqui',
-          style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17),
+        const SizedBox(width: 50),
+        GestureDetector(
+          onTap: () => controller.goToRegisterPage() ,
+          child: const Text(
+            'Registrate aqui',
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17),
+          ),
         )
       ],
     );
