@@ -1,0 +1,34 @@
+{
+  "name": "app_delivery",
+  "version": "1.0.0",
+  "description": "Backend de la aplicacion delivery",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrsd83/aplicacion-delivery.git"
+  },
+  "keywords": [
+    "flutter",
+    "delivery",
+    "nodeJS"
+  ],
+  "author": "Henry Sanchez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hrsd83/aplicacion-delivery/issues"
+  },
+  "homepage": "https://github.com/hrsd83/aplicacion-delivery#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1"
+  }
+}

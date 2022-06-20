@@ -1,8 +1,9 @@
+import 'package:app_delivery/src/pages/login/providers/users_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../models/user.dart';
 
 class RegisterController extends GetxController {
-
   TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
@@ -10,7 +11,9 @@ class RegisterController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  void register() {
+  UsersProviders usersProviders = UsersProviders();
+
+  void register() async {
     String email = emailController.text.trim();
     String name = nameController.text;
     String lastName = lastNameController.text;
@@ -22,20 +25,32 @@ class RegisterController extends GetxController {
     print('Password $email');
 
     if (isValidForm(email, name, lastName, phone, password, confirmPassword)) {
-      Get.snackbar('Formulario Valido', 'Estas listo para enviar la peticion HTTP');
+
+      User user = User(
+        email: email,
+        name: name,
+        lastname: lastName,
+        phone: phone,
+        password: password,
+      );
+
+      Response response = await usersProviders.create(user);
+      print('RESPONSE: ${response.body}');
+
+      Get.snackbar(
+          'Formulario Valido', 'Estas listo para enviar la peticion HTTP');
     }
   }
 
 //VALIDACION
   bool isValidForm(
-    String email, 
-    String name, 
-    String lastName, 
+    String email,
+    String name,
+    String lastName,
     String phone,
-    String password, 
+    String password,
     String confirmPassword,
-    ){
-
+  ) {
     if (email.isEmpty) {
       Get.snackbar('Formulario no valido', 'Debes ingresar el email');
       return false;
@@ -64,16 +79,14 @@ class RegisterController extends GetxController {
       return false;
     }
     if (confirmPassword.isEmpty) {
-      Get.snackbar('Formulario no valido', 'Debes ingresar la confirmacion del password');
+      Get.snackbar('Formulario no valido',
+          'Debes ingresar la confirmacion del password');
       return false;
     }
-      if (password != confirmPassword) {
-        Get.snackbar('Formulario no valido', 'los password no coinciden');
-        return false;
-      }
-      return true ;
-      
+    if (password != confirmPassword) {
+      Get.snackbar('Formulario no valido', 'los password no coinciden');
+      return false;
     }
-  
+    return true;
   }
-
+}
